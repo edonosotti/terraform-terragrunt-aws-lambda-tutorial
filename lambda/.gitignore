@@ -1,4 +1,12 @@
 # Taken from: https://github.com/github/gitignore/blob/master/Python.gitignore
+# and adapted
+
+# Since AWS Lambda requires the dependencies to be packaged with the sources
+# in the root directory of the project, the following patterns will ignore
+# all new directories except for the directories containing actual sources.
+**/
+!core/
+!tests/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
