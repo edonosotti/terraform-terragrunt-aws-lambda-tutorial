@@ -70,3 +70,19 @@ $ AWS_PROFILE=myprofilename terraform apply
 The `Terraform AWS provider` offers a number of options to set credentials,
 [check the docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication)
 for further details.
+
+To deploy to a specific AWS `region`
+(see [`variables.tf`](terraform/variables.tf) for defaults):
+
+```
+$ terraform apply -var aws_region="eu-west-1"
+```
+
+### Cleaning up
+
+Run:
+
+```
+$ cd terraform
+$ terraform destroy
+```
