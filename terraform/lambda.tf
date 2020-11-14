@@ -44,10 +44,16 @@ data "archive_file" "lambda_source_package" {
   output_path = "${path.module}/.tmp/${random_uuid.lambda_src_hash.result}.zip"
 
   excludes    = [
-    "${local.lambda_src_path}/__pycache__",
-    "${local.lambda_src_path}/core/__pycache__",
-    "${local.lambda_src_path}/tests"
+    "__pycache__",
+    "core/__pycache__",
+    "tests"
   ]
+
+  # This is necessary, since archive_file is now a
+  # `data` source and not a `resource` anymore.
+  # Use `depends_on` to wait for the "install dependencies"
+  # task to be completed.
+  depends_on = [null_resource.install_dependencies]
 }
 
 # Create an IAM execution role for the Lambda function.
