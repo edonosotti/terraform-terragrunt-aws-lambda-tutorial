@@ -58,7 +58,12 @@ data "archive_file" "lambda_source_package" {
 
 # Create an IAM execution role for the Lambda function.
 resource "aws_iam_role" "execution_role" {
-  name = "lambda-execution-role-zero-provider"
+  # IAM Roles are "global" resources. Lambda functions aren't.
+  # In order to deploy the Lambda function in multiple regions
+  # within the same account, separate Roles must be created.
+  # The same Role could be shared across different Lambda functions,
+  # but it's just not convenient to do so in Terraform.
+  name = "lambda-execution-role-zero-provider-${var.aws_region}"
 
   assume_role_policy = <<EOF
 {
