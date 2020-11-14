@@ -1,0 +1,13 @@
+matrix:
+  include:
+    - language: python
+      python:
+        - "3.8"
+      before_install:
+        - cd lambda
+      install:
+        - pip install -r requirements.txt
+      before_script:
+        - cd lambda
+      script:
+        - python -m unittest discover
