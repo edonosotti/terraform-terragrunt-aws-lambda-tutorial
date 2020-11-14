@@ -108,7 +108,7 @@ resource "aws_lambda_function" "zero_provider" {
   memory_size = 128
   timeout = 30
 
-  source_code_hash = random_uuid.lambda_src_hash.result
+  source_code_hash = data.archive_file.lambda_source_package.output_base64sha256
 
   tags = {
     provisioner = "terraform"
