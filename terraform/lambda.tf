@@ -1,7 +1,9 @@
 # Define a local variable for the Lambda function
 # source code path in order to avoid repetitions.
 locals {
-  lambda_src_path = "${path.module}/../lambda"
+  # Relative paths change if this configuration is
+  # included as a module from Terragrunt.
+  lambda_src_path = "${path.module}${var.lambda_relative_path}lambda"
 }
 
 # Compute the source code hash, only taking into

@@ -2,18 +2,23 @@
 
 This tutorial shows how to deploy a `Python` function on
 [`AWS Lambda`](https://aws.amazon.com/lambda/) with
-[`Terraform`](https://www.terraform.io).
+[`Terraform`](https://www.terraform.io) and
+[`Terragrunt`](https://terragrunt.gruntwork.io).
 
 The `Terraform` configuration can also:
  * install the required `Python` dependencies
  * keep track of changes to the code and dependencies
    to avoid re-deploying an unchanged function
 
+`Terragrunt` is a wrapper for `Terraform` which helps
+to manage multiple environments.
+
 ## Prerequisites
 
  * [`Python 3.8`](https://www.python.org/downloads/release/python-386/)
- * [`Terraform 0.13.5`](https://releases.hashicorp.com/terraform/0.13.5/)
+ * [`Terraform v0.13.5`](https://releases.hashicorp.com/terraform/0.13.5/)
  * [`AWS CLI 1.18.69`](https://aws.amazon.com/cli/?nc1=h_ls)
+ * [`Terragrunt v0.26.2`](https://github.com/gruntwork-io/terragrunt/releases/tag/v0.26.2) _(optional)_
 
 Optional:
 
@@ -34,6 +39,8 @@ Optional:
    $ source activate tflambda
    ```
    ([Python docs](https://wiki.python.org/moin/BeginnersGuide))
+ * `Terragrunt` is optional, install it for a more advanced setup
+   ([read the docs](https://terragrunt.gruntwork.io/docs/getting-started/install/#install-terragrunt))
 
 ## Usage
 
@@ -51,7 +58,7 @@ to view the log output on screen, run:
 $ LOG_LEVEL=INFO python lambda.py
 ```
 
-### Deploy to AWS Lambda with Terraform
+### Deploying to AWS Lambda with Terraform
 
 Run:
 
@@ -76,6 +83,27 @@ To deploy to a specific AWS `region`
 
 ```
 $ terraform apply -var aws_region="eu-west-1"
+```
+
+### Deploying to AWS Lambda with Terragrunt
+
+2 sample `Terragrunt` configurations are provided:
+ * [`terragrunt/eu`](terragrunt/eu) sets the AWS `region` to `eu-west-1`
+ * [`terragrunt/us`](terragrunt/us) sets the AWS `region` to `us-east-1`
+
+Run:
+
+```
+$ cd terragrunt/eu
+$ terragrunt apply
+```
+
+change `/eu` to `/us` and repeat to try another region.
+
+AWS profiles selection also applies to `Terragrunt`:
+
+```
+$ AWS_PROFILE=myprofilename terragrunt apply
 ```
 
 ### Cleaning up
