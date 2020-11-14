@@ -17,7 +17,23 @@ The `Terraform` configuration can also:
 
 Optional:
 
- * [`Miniconda`](https://docs.conda.io/en/latest/miniconda.html)
+ * [`Miniconda`](https://docs.conda.io/en/latest/miniconda.html),
+   [`Conda`](https://docs.conda.io/en/latest/)
+
+## Setup
+
+ * Create an AWS account and get a `Access Key ID` and `Secret Access Key` pair
+   ([read the docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html))
+ * Install and configure the `AWS CLI`
+   ([read the docs](https://docs.aws.amazon.com/polly/latest/dg/setup-aws-cli.html))
+ * Install `Terraform`
+   ([read the docs](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started))
+ * Install `Python` or, with `Miniconda` or `Conda`, run:
+   ```
+   $ conda env create -n tflambda -f environment.yml
+   $ source activate tflambda
+   ```
+   ([Python docs](https://wiki.python.org/moin/BeginnersGuide))
 
 ## Usage
 
@@ -45,12 +61,12 @@ $ terraform init
 $ terraform apply
 ```
 
+If you have multiple AWS profiles and you want to set the profile to use:
 
-To prevent automatic upgrades to new major versions that may contain breaking
-changes, we recommend adding version constraints in a required_providers block
-in your configuration, with the constraint strings suggested below.
+```
+$ AWS_PROFILE=myprofilename terraform apply
+```
 
-* hashicorp/archive: version = "~> 2.0.0"
-* hashicorp/aws: version = "~> 3.15.0"
-* hashicorp/null: version = "~> 3.0.0"
-* hashicorp/random: version = "~> 3.0.0"
+The `Terraform AWS provider` offers a number of options to set credentials,
+[check the docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication)
+for further details.
