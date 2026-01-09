@@ -1,8 +1,10 @@
-[![Build Status](https://travis-ci.org/edonosotti/terraform-terragrunt-aws-lambda-tutorial.svg?branch=master)](https://travis-ci.org/edonosotti/terraform-terragrunt-aws-lambda-tutorial)
-[![Maintainability](https://api.codeclimate.com/v1/badges/1c4025a59a4117002597/maintainability)](https://codeclimate.com/github/edonosotti/terraform-terragrunt-aws-lambda-tutorial/maintainability)
-[![codebeat badge](https://codebeat.co/badges/3e695e11-f685-4f21-941a-1d8c7ea04fd0)](https://codebeat.co/projects/github-com-edonosotti-terraform-terragrunt-aws-lambda-tutorial-master)
-
 # AWS Lambda deployment with Terraform & Terragrunt - Tutorial
+
+**NOTE:** _This code was written for an
+[article](https://medium.com/rockedscience/hard-lessons-from-deploying-lambda-functions-with-terraform-4b4f98b8fc39)
+in the **RockedScience** publication on Medium._
+
+## Description
 
 This tutorial shows how to deploy a `Python` function on
 [`AWS Lambda`](https://aws.amazon.com/lambda/) with
@@ -118,3 +120,4 @@ Run:
 $ cd terraform
 $ terraform destroy
 ```
+
